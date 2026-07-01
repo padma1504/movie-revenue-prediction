@@ -23,8 +23,6 @@ model = joblib.load("movie_revenue.pkl")
 scaler = joblib.load("scaler.pkl")
 encoders = joblib.load("encoders.pkl")
 
-st.set_page_config(page_title="Movie Revenue Prediction", page_icon="🎬")
-
 st.title("🎬 Movie Revenue Prediction")
 st.write("Enter the movie details below to predict the revenue.")
 
