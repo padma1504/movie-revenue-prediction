@@ -3,6 +3,11 @@ import pandas as pd
 import numpy as np
 import joblib
 
+st.set_page_config(page_title="Movie Revenue Prediction", page_icon="🎬")
+
+st.title("🎬 Movie Revenue Prediction")
+st.write("Predict the expected movie revenue using machine learning.")
+
 model = joblib.load("movie_revenue.pkl")
 scaler = joblib.load("scaler.pkl")
 encoders = joblib.load("encoders.pkl")
@@ -41,21 +46,36 @@ votes = st.number_input(
     value=1000
 )
 
-director = st.text_input("Director Name")
+director = st.selectbox(
+    "Director Name",
+    encoders["director"].classes_
+)
 
-writer = st.text_input("Writer Name")
+writer = st.selectbox(
+    "Writer Name",
+    encoders["writer"].classes_
+)
 
-star = st.text_input("Lead Actor/Actress")
+star = st.selectbox(
+    "Lead Actor/Actress",
+    encoders["star"].classes_
+)
 
-country = st.text_input("Country")
+country = st.selectbox(
+    "Country",
+    encoders["country"].classes_
+)
+
+company = st.selectbox(
+    "Production Company",
+    encoders["company"].classes_
+)
 
 budget = st.number_input(
     "Budget",
     min_value=0.0,
     value=1000000.0
 )
-
-company = st.text_input("Production Company")
 
 runtime = st.number_input(
     "Runtime (minutes)",
