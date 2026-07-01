@@ -4,10 +4,21 @@ import numpy as np
 import joblib
 
 st.set_page_config(page_title="Movie Revenue Prediction", page_icon="🎬")
-
-st.title("🎬 Movie Revenue Prediction")
+st.write("""
+Predict the expected movie revenue using a Machine Learning model trained on historical movie data.
+""")
 st.write("Predict the expected movie revenue using machine learning.")
+st.sidebar.title("About")
 
+st.sidebar.info("""
+Movie Revenue Prediction App
+
+Built using:
+• Python
+• Streamlit
+• Machine Learning
+• Scikit-learn
+""")
 model = joblib.load("movie_revenue.pkl")
 scaler = joblib.load("scaler.pkl")
 encoders = joblib.load("encoders.pkl")
@@ -132,7 +143,9 @@ if st.button("Predict Revenue"):
         prediction = model.predict(input_scaled)
 
         st.success(f"🎉 Predicted Movie Revenue: ${prediction[0]:,.2f}")
-
+        st.balloons()
+        st.markdown("---")
+        st.caption("Created by Padma,Priya,Ragha")
     except ValueError:
         st.error(
             "One or more values (Director, Writer, Star, Country, or Company) "
