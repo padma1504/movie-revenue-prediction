@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
-
+st.title("🎬 Movie Revenue Prediction")
 st.set_page_config(page_title="Movie Revenue Prediction", page_icon="🎬")
 st.write("""
 Predict the expected movie revenue using a Machine Learning model trained on historical movie data.
@@ -23,7 +23,6 @@ model = joblib.load("movie_revenue.pkl")
 scaler = joblib.load("scaler.pkl")
 encoders = joblib.load("encoders.pkl")
 
-st.title("🎬 Movie Revenue Prediction")
 st.write("Enter the movie details below to predict the revenue.")
 
 favorability = st.number_input(
