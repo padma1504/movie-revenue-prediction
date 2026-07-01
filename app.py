@@ -7,7 +7,7 @@ st.set_page_config(page_title="Movie Revenue Prediction", page_icon="🎬")
 st.write("""
 Predict the expected movie revenue using a Machine Learning model trained on historical movie data.
 """)
-st.write("Predict the expected movie revenue using machine learning.")
+
 st.sidebar.title("About")
 
 st.sidebar.info("""
