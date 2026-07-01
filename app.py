@@ -62,3 +62,59 @@ runtime = st.number_input(
     min_value=1,
     value=120
 )
+
+if st.button("Predict Revenue"):
+
+    try:
+
+        rating_encoded = encoders["rating"].transform([rating])[0]
+        genre_encoded = encoders["genre"].transform([genre])[0]
+        director_encoded = encoders["director"].transform([director])[0]
+        writer_encoded = encoders["writer"].transform([writer])[0]
+        star_encoded = encoders["star"].transform([star])[0]
+        country_encoded = encoders["country"].transform([country])[0]
+        company_encoded = encoders["company"].transform([company])[0]
+
+        input_data = pd.DataFrame([[
+
+            favorability,
+            rating_encoded,
+            genre_encoded,
+            year,
+            votes,
+            director_encoded,
+            writer_encoded,
+            star_encoded,
+            country_encoded,
+            budget,
+            company_encoded,
+            runtime
+
+        ]], columns=[
+
+            "favorability",
+            "rating",
+            "genre",
+            "year",
+            "votes",
+            "director",
+            "writer",
+            "star",
+            "country",
+            "budget",
+            "company",
+            "runtime"
+
+        ])
+
+        input_scaled = scaler.transform(input_data)
+
+        prediction = model.predict(input_scaled)
+
+        st.success(f"🎉 Predicted Movie Revenue: ${prediction[0]:,.2f}")
+
+    except ValueError:
+        st.error(
+            "One or more values (Director, Writer, Star, Country, or Company) "
+            "were not found in the training data. Please enter a value that exists in the dataset."
+        )
